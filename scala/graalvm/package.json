@@ -1,0 +1,13 @@
+{
+  "name": "complete",
+  "version": "0.1.0",
+  "devDependencies": {
+    "serverless": "^2.45.1"
+  },
+  "dependencies": {
+  },
+  "scripts": {
+    "deploy": "sbt lambdaPackage && serverless deploy",
+    "remove": "serverless remove"
+  }
+}

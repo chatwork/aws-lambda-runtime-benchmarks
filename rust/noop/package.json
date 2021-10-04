@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "serverless": "^2.45.1",
+    "serverless-rust": "^0.3.8"
+  },
+  "name": "my-new-app",
+  "scripts": {
+    "deploy": "rustup target add x86_64-unknown-linux-musl && serverless deploy",
+    "remove": "serverless remove"
+  }
+}

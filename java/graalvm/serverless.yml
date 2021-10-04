@@ -1,0 +1,40 @@
+service: RuntimeBenchmark-Java-GraalVM
+
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  region: ap-northeast-1
+  runtime: provided
+  lambdaHashingVersion: 20201221
+  versionFunctions: false
+  memorySize: "${env:LAMBDA_MEMORY, '256'}"
+  timeout: 5
+  iam:
+    role:
+      statements:
+        - Effect: "Allow"
+          Action:
+            - dynamodb:Query
+            - dynamodb:GetItem
+          # FIXME: DO NOT USE THIS FOR PRODUCTION !!
+          Resource: "arn:aws:dynamodb:*:*:table/*"
+
+package:
+  artifact: target/lambda.zip
+
+functions:
+  noop:
+    # このカスタムランタイムは handler の指定は意味なし
+    handler: com.chatwork.Main
+    events: []
+
+  getItem:
+    # このカスタムランタイムは handler の指定は意味なし
+    handler: com.chatwork.Main
+    events: []
+
+  query:
+    # このカスタムランタイムは handler の指定は意味なし
+    handler: com.chatwork.Main
+    events: []

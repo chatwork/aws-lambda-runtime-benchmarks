@@ -1,0 +1,43 @@
+service: RuntimeBenchmark-TypeScript-SDK
+
+plugins:
+  - serverless-esbuild
+
+custom:
+  esbuild:
+    target: es2020
+    minify: false
+    watch:
+      # anymatch-compatible definition (https://github.com/es128/anymatch)
+      pattern: ['./src/*.ts']
+      ignore: ['.serverless/**/*', '.build']
+
+package:
+  patterns:
+    - '!node_modules/**'
+
+provider:
+  name: aws
+  region: ap-northeast-1
+  runtime: nodejs14.x
+  memorySize: "${env:LAMBDA_MEMORY, '128'}"
+  versionFunctions: false
+  lambdaHashingVersion: 20201221
+  iam:
+    role:
+      statements:
+        - Effect: "Allow"
+          Action:
+            - dynamodb:Query
+            - dynamodb:GetItem
+          # FIXME: DO NOT USE THIS FOR PRODUCTION !!
+          Resource: "arn:aws:dynamodb:*:*:table/*"
+
+functions:
+  getItem:
+    handler: src/index.getItem
+    events: []
+
+  query:
+    handler: src/index.query
+    events: []

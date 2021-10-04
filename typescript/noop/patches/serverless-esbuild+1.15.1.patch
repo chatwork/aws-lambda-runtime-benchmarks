@@ -1,0 +1,13 @@
+diff --git a/node_modules/serverless-esbuild/dist/packagers/npm.js b/node_modules/serverless-esbuild/dist/packagers/npm.js
+index 099a27f..e55c1bc 100644
+--- a/node_modules/serverless-esbuild/dist/packagers/npm.js
++++ b/node_modules/serverless-esbuild/dist/packagers/npm.js
+@@ -92,7 +92,7 @@ class NPM {
+     install(cwd) {
+         return __awaiter(this, void 0, void 0, function* () {
+             const command = /^win/.test(process.platform) ? 'npm.cmd' : 'npm';
+-            const args = ['install'];
++            const args = ['install', '--legacy-peer-deps'];
+             yield utils_1.spawnProcess(command, args, { cwd });
+         });
+     }

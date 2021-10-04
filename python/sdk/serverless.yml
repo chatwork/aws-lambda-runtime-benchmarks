@@ -1,0 +1,29 @@
+service: RuntimeBenchmark-Python-SDK
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  runtime: python3.9
+  lambdaHashingVersion: 20201221
+  memorySize: "${env:LAMBDA_MEMORY, '128'}"
+  region: ap-northeast-1
+  iam:
+    role:
+      statements:
+        - Effect: "Allow"
+          Action:
+            - dynamodb:Query
+            - dynamodb:GetItem
+          # FIXME: DO NOT USE THIS FOR PRODUCTION !!
+          Resource: "arn:aws:dynamodb:*:*:table/*"
+  timeout: 20
+
+functions:
+  getItem:
+    handler: handler.getItem
+
+  query:
+    handler: handler.query
+
+plugins:
+  - serverless-python-requirements

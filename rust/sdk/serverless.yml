@@ -1,0 +1,37 @@
+service: RuntimeBenchmark-Rust-SDK
+
+package:
+  individually: true
+
+provider:
+  name: aws
+  region: ap-northeast-1
+  runtime: rust
+  memorySize: "${env:LAMBDA_MEMORY, '128'}"
+  versionFunctions: false
+  lambdaHashingVersion: 20201221
+  iam:
+    role:
+      statements:
+        - Effect: "Allow"
+          Action:
+            - dynamodb:Query
+            - dynamodb:GetItem
+          # FIXME: DO NOT USE THIS FOR PRODUCTION !!
+          Resource: "arn:aws:dynamodb:*:*:table/*"
+
+plugins:
+  - serverless-rust
+
+custom:
+  rust:
+    dockerless: true
+
+functions:
+  getItem:
+    handler: hello
+    events: []
+
+  query:
+    handler: hello
+    events: []

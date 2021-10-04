@@ -1,0 +1,13 @@
+{
+  "name": "RuntimeBenchmark-Python",
+  "description": "",
+  "version": "0.1.0",
+  "devDependencies": {
+    "serverless": "^2.45.1",
+    "serverless-python-requirements": "^5.1.1"
+  },
+  "scripts": {
+    "deploy": "serverless deploy",
+    "remove": "serverless remove"
+  }
+}

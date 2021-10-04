@@ -1,0 +1,19 @@
+service: RuntimeBenchmark-Java-Noop
+
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  region: ap-northeast-1
+  runtime: java11
+  lambdaHashingVersion: 20201221
+  memorySize: "${env:LAMBDA_MEMORY, '128'}"
+  timeout: 30
+
+package:
+  artifact: target/hello.jar
+
+functions:
+  noop:
+    handler: com.chatwork.Noop
+    events: [ ]

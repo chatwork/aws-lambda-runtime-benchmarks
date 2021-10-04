@@ -1,0 +1,32 @@
+service: RuntimeBenchmark-Java-SDK
+
+frameworkVersion: '2'
+
+provider:
+  name: aws
+  region: ap-northeast-1
+  runtime: java11
+  timeout: 30
+  lambdaHashingVersion: 20201221
+  memorySize: "${env:LAMBDA_MEMORY, '512'}"
+  iam:
+    role:
+      statements:
+        - Effect: "Allow"
+          Action:
+            - dynamodb:Query
+            - dynamodb:GetItem
+          # FIXME: DO NOT USE THIS FOR PRODUCTION !!
+          Resource: "arn:aws:dynamodb:*:*:table/*"
+
+package:
+  artifact: target/hello.jar
+
+functions:
+  getItem:
+    handler: com.chatwork.GetItem
+    events: [ ]
+
+  query:
+    handler: com.chatwork.Query
+    events: [ ]
