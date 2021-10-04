@@ -2,10 +2,10 @@
 
 AWS Lambda の各ランタイムを比較するためのデモコードです。
 
-- `benchmark-tool` ディレクトリには、Lambda 関数にリクエストを投げて、CloudWatch Logs を収集する Lambda 関数があります。
-- `test-events` ディレクトリには、Lambda コンソールでテスト実行するためのテストイベントJSONが格納してあります。
+- `benchmark-tool` ディレクトリには、 Lambda 関数として実装した簡易ベンチマーク用ツールがあります。Lambda 関数にリクエストを投げて、CloudWatch Logs から性能を収集します。。
+- `test-events` ディレクトリには、↑のベンチマークツールで使う（後述）テストイベントJSONが格納してあります。
 - `terraform` ディレクトリには、Lambda 関数からアクセスする DynamoDB テーブルをセットアップする terraform があります。
-- その他の `java` や `python` などのディレクトリには、各ランタイムでの Lambda 関数とプロビジョニングする Serverless Framework の設定が入っています。
+- その他の `java` や `python` などのディレクトリには、各ランタイムでの Lambda 関数と Serverless Framework の設定が入っています。
 
 ## 前提
 
